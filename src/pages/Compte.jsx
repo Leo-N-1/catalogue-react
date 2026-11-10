@@ -1,4 +1,6 @@
-export default function Compte({ utilisateur }) {
+import { useAuth } from '../contexts/AuthContext.jsx';
+export default function Compte() {
+  const { utilisateur } = useAuth();
   return (
     <>
       <title>Mon compte — Bibliothèque municipale</title>

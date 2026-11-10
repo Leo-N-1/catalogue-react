@@ -1,7 +1,9 @@
 import { Link, NavLink, Outlet } from 'react-router';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
 // Ce qui est commun à toutes les pages. <Outlet /> marque l'endroit où s'affiche la page demandée.
-export default function MiseEnPage({ utilisateur, onDeconnexion }) {
+export default function MiseEnPage() {
+  const { utilisateur, deconnecter } = useAuth();
   return (
     <>
       <a className="evitement" href="#contenu">Aller au contenu</a>
@@ -15,7 +17,7 @@ export default function MiseEnPage({ utilisateur, onDeconnexion }) {
             <li><NavLink to="/compte">Mon compte</NavLink></li>
             {utilisateur && (
               <li>
-                <button type="button" onClick={onDeconnexion}>Se déconnecter</button>
+                <button type="button" onClick={deconnecter}>Se déconnecter</button>
               </li>
             )}
           </ul>

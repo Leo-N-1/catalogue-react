@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { adherents } from '../data/adherents.js';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
-export default function Connexion({ onConnexion }) {
+export default function Connexion() {
+  const { connecter } = useAuth();
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [erreur, setErreur] = useState('');
@@ -18,7 +20,7 @@ export default function Connexion({ onConnexion }) {
       return;
     }
 
-    onConnexion({ id: adherent.id, nom: adherent.nom, email: adherent.email });
+    connecter({ id: adherent.id, nom: adherent.nom, email: adherent.email });
     // Retour à la page qui avait demandé la connexion, sinon au compte.
     navigate(location.state?.depuis ?? '/compte', { replace: true });
   }
