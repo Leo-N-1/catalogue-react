@@ -1,0 +1,439 @@
+/* ---------- Catalogue React · feuille de style fournie ----------
+   La même pour les cinq TP du module : elle contient déjà les règles
+   des séances suivantes (menu, fiche, connexion, emprunts, chargement).
+   Elles s'appliqueront quand les éléments apparaîtront. */
+
+:root {
+  --fond: #f9fafb;
+  --texte: #1f2937;
+  --discret: #4b5563;
+  --accent: #4f46e5;
+  --nuit: #312e81;
+  --carte: #ffffff;
+  --bordure: #d1d5db;
+  --succes: #047857;
+  --succes-fond: #ecfdf5;
+  --erreur: #b91c1c;
+  --erreur-fond: #fef2f2;
+  --sur-accent: #ffffff;
+  --rayon: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--texte);
+  background: var(--fond);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--accent);
+}
+
+.evitement {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  color: var(--sur-accent);
+  background: var(--nuit);
+}
+
+.evitement:focus {
+  top: 1rem;
+}
+
+/* ---------- en-tête et pied ---------- */
+
+.en-tete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  color: #ffffff;
+  background: var(--nuit);
+}
+
+.en-tete a {
+  color: inherit;
+  text-underline-offset: 0.3em;
+}
+
+.logo {
+  margin: 0;
+  font-weight: 700;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.en-tete ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* le lien de la page où l'on est : React Router lui donne aria-current="page" */
+.en-tete a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration-thickness: 3px;
+}
+
+.pastille {
+  display: inline-block;
+  min-width: 1.6rem;
+  margin-left: 0.3rem;
+  padding: 0 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--nuit);
+  background: #ffffff;
+  border-radius: 999px;
+}
+
+.utilisateur {
+  margin: 0;
+  color: #c7d2fe;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.pied {
+  padding: 1rem 1.5rem;
+  text-align: center;
+  color: var(--discret);
+}
+
+/* ---------- les champs et les boutons ---------- */
+
+.outils {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--carte);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+
+.champ {
+  flex: 1 1 12rem;
+}
+
+.champ label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: #ffffff;
+}
+
+.case {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.45rem;
+}
+
+button,
+.bouton {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  color: var(--sur-accent);
+  text-decoration: none;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: var(--rayon);
+  cursor: pointer;
+}
+
+button.secondaire,
+.bouton.secondaire {
+  color: var(--accent);
+  background: transparent;
+}
+
+.en-tete button {
+  color: #ffffff;
+  background: transparent;
+  border-color: #a5b4fc;
+}
+
+button:disabled {
+  color: var(--discret);
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+.compteur {
+  color: var(--discret);
+}
+
+.aucun {
+  padding: 1rem;
+  background: var(--carte);
+  border: 1px dashed var(--bordure);
+  border-radius: var(--rayon);
+}
+
+/* ---------- les cartes ---------- */
+
+.livres {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.livre {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 1rem;
+  background: var(--carte);
+  border: 1px solid var(--bordure);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--rayon);
+}
+
+/* La couverture : une vraie image, recadrée au format d'un livre. */
+.livre .couverture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border-radius: calc(var(--rayon) / 2);
+  background: var(--bordure);
+}
+
+.livre h2,
+.livre p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.livre h2 {
+  font-size: 1.15rem;
+}
+
+.genre {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.auteur {
+  color: var(--discret);
+}
+
+.dispo {
+  font-weight: 600;
+  color: var(--succes);
+}
+
+.emprunte {
+  border-top-color: var(--bordure);
+}
+
+.emprunte .dispo {
+  color: var(--erreur);
+}
+
+.livre .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* ---------- la fiche d'un livre ---------- */
+
+.fil {
+  margin: 0 0 1rem;
+}
+
+.fiche {
+  max-width: 45rem;
+  padding: 1.5rem;
+  background: var(--carte);
+  border: 1px solid var(--bordure);
+  border-top: 6px solid var(--accent);
+  border-radius: var(--rayon);
+}
+
+.fiche h1 {
+  margin: 0.25rem 0;
+}
+
+.fiche .resume {
+  font-size: 1.1rem;
+}
+
+.fiche .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- formulaires : connexion ---------- */
+
+.formulaire {
+  display: grid;
+  gap: 1rem;
+  max-width: 26rem;
+  padding: 1.5rem;
+  background: var(--carte);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+
+.formulaire button {
+  justify-self: start;
+}
+
+.aide {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: var(--discret);
+}
+
+/* ---------- messages : erreur, succès, chargement ---------- */
+
+.alerte {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--erreur);
+  background: var(--erreur-fond);
+  border-left: 4px solid var(--erreur);
+  border-radius: var(--rayon);
+}
+
+.succes {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--succes);
+  background: var(--succes-fond);
+  border-left: 4px solid var(--succes);
+  border-radius: var(--rayon);
+}
+
+.chargement {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--discret);
+}
+
+.chargement::before {
+  content: "";
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 3px solid var(--bordure);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: tourner 0.8s linear infinite;
+}
+
+@keyframes tourner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chargement::before {
+    animation-duration: 3s;
+  }
+}
+
+/* ---------- la liste d'emprunts ---------- */
+
+.selection {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.selection li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--carte);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+
+.selection p {
+  margin: 0;
+}
+
+.barre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
