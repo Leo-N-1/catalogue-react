@@ -1,9 +1,11 @@
 import { Link, NavLink, Outlet } from 'react-router';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import { useListe } from '../contexts/ListeContext.jsx';
 
 // Ce qui est commun à toutes les pages. <Outlet /> marque l'endroit où s'affiche la page demandée.
 export default function MiseEnPage() {
   const { utilisateur, deconnecter } = useAuth();
+  const { liste } = useListe();
   return (
     <>
       <a className="evitement" href="#contenu">Aller au contenu</a>
@@ -14,6 +16,11 @@ export default function MiseEnPage() {
           <ul>
             <li><NavLink to="/" end>Accueil</NavLink></li>
             <li><NavLink to="/catalogue">Catalogue</NavLink></li>
+            <li>
+              <NavLink to="/ma-liste">
+                Ma liste <span className="pastille">{liste.length}</span>
+              </NavLink>
+            </li>
             <li><NavLink to="/compte">Mon compte</NavLink></li>
             {utilisateur && (
               <li>
