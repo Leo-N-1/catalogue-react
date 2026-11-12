@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router';
 import { livres } from '../data/livres.js';
+import BoutonListe from '../components/BoutonListe.jsx';
 
 export default function FicheLivre() {
   const { id } = useParams();
@@ -29,6 +30,7 @@ export default function FicheLivre() {
         <p className="resume">{livre.resume}</p>
 
         <div className="actions">
+          <BoutonListe livre={livre} />
           <button type="button" className="secondaire" onClick={() => navigate(-1)}>
             Retour
           </button>
