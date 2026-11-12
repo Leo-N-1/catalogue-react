@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import BoutonListe from './BoutonListe.jsx';
 
 // Une carte : elle ne décide de rien, elle affiche le livre qu'on lui donne.
 export default function CarteLivre({ livre }) {
@@ -9,6 +10,9 @@ export default function CarteLivre({ livre }) {
       <h2><Link to={`/livres/${livre.id}`}>{livre.titre}</Link></h2>
       <p className="auteur">{livre.auteur} · {livre.annee}</p>
       <p className="dispo">{livre.disponible ? 'Disponible' : 'Emprunté'}</p>
+      <div className="actions">
+        <BoutonListe livre={livre} />
+      </div>
     </article>
   );
 }
